@@ -1,8 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import PhotoListItem from './components/PhotoListItem';
-import './App.scss';
-
+import PhotoListItem from "./components/PhotoListItem";
+import "./App.scss";
 
 const sampleDataForPhotoListItem = {
   id: "1",
@@ -15,13 +14,19 @@ const sampleDataForPhotoListItem = {
   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
 
+const SamplePhotoList = (photoData) => {
+  const props = {photoData};
+  const photos = [];
+  for (let i = 0; i < 3; i++) {
+    photos[i] = PhotoListItem(props);
+  }
+  return photos;
+};
+
+const photos = SamplePhotoList(sampleDataForPhotoListItem);
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  return (
-    <div className="App">
-      <PhotoListItem photoData={sampleDataForPhotoListItem} />
-    </div>
-  );
+  return <div className="App">{photos}</div>;
 };
 
 export default App;
