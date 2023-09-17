@@ -6,11 +6,11 @@ import FavIcon from "./FavIcon";
 
 
 const TopNavigation = (props) => {
-  const {topicData} = props;
+  const {topicDataList} = props;
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
-      <TopicList topicList={topicData} />
+      <TopicList topicDataList={topicDataList} />
       <FavIcon selected={true} />
     </div>
   );
