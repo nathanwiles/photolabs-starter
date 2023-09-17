@@ -64,7 +64,7 @@ const photo4 = {
   },
   user: {
     id: "4",
-    updated_at: "2016-07-10T11:00:01-05:00",
+    updatedAt: "2016-07-10T11:00:01-05:00",
     username: "exampleuser",
     name: "Joe Example",
     profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
@@ -182,7 +182,7 @@ const photo10 = {
 const photos = [
   {
     ...photo1,
-    similar_photos: {
+    similarPhotos: {
       photo2,
       photo3,
       photo4,
@@ -191,7 +191,7 @@ const photos = [
   },
   {
     ...photo2,
-    similar_photos: {
+    similarPhotos: {
       photo2,
       photo3,
       photo4,
@@ -200,7 +200,7 @@ const photos = [
   },
   {
     ...photo3,
-    similar_photos: {
+    similarPhotos: {
       photo2,
       photo3,
       photo4,
@@ -209,7 +209,7 @@ const photos = [
   },
   {
     ...photo4,
-    similar_photos: {
+    similarPhotos: {
       photo2,
       photo3,
       photo4,
@@ -218,7 +218,7 @@ const photos = [
   },
   {
     ...photo5,
-    similar_photos: {
+    similarPhotos: {
       photo2,
       photo3,
       photo4,
@@ -227,7 +227,7 @@ const photos = [
   },
   {
     ...photo6,
-    similar_photos: {
+    similarPhotos: {
       photo2,
       photo3,
       photo4,
@@ -236,7 +236,7 @@ const photos = [
   },
   {
     ...photo7,
-    similar_photos: {
+    similarPhotos: {
       photo2,
       photo3,
       photo4,
@@ -245,7 +245,7 @@ const photos = [
   },
   {
     ...photo8,
-    similar_photos: {
+    similarPhotos: {
       photo2,
       photo3,
       photo4,
@@ -254,7 +254,7 @@ const photos = [
   },
   {
     ...photo9,
-    similar_photos: {
+    similarPhotos: {
       photo2,
       photo3,
       photo4,
@@ -263,7 +263,7 @@ const photos = [
   },
   {
     ...photo10,
-    similar_photos: {
+    similarPhotos: {
       photo2,
       photo3,
       photo4,
