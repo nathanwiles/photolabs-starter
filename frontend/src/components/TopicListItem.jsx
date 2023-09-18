@@ -6,7 +6,7 @@ const TopicListItem = (props) => {
   const { id, title } = props;
 
   return (
-    <div key={id} className="topic-list__item">
+    <div className="topic-list__item">
       {title}
     </div>
   );
