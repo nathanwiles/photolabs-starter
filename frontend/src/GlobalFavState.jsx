@@ -1,8 +1,8 @@
 import { React, useState, createContext } from "react";
 
-export const Context = createContext();
+export const favContext = createContext();
 
-const GlobalState = ({ children }) => {
+const GlobalFavState = ({ children }) => {
   const [favs, setFavs] = useState([]);
 
   const toggleFavs = (id) => {
@@ -25,7 +25,7 @@ const GlobalState = ({ children }) => {
   };
 
   return (
-    <Context.Provider value={[favs, toggleFavs]}>{children}</Context.Provider>
+    <favContext.Provider value={[favs, toggleFavs]}>{children}</favContext.Provider>
   );
 };
-export default GlobalState;
+export default GlobalFavState;

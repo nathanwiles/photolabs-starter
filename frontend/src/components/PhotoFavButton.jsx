@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Context } from "GlobalState";
+import { favContext } from "GlobalFavState";
 import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
 const PhotoFavButton = (props) => {
-  const [favs, toggleFavs] = useContext(Context);
+  const [favs, toggleFavs] = useContext(favContext);
 
 
   const handleClick = (e) => {

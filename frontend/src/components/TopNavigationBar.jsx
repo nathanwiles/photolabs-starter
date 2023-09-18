@@ -3,10 +3,10 @@ import { React, useContext, useState, useEffect } from "react";
 import "../styles/TopNavigationBar.scss";
 import TopicList from "./TopicList";
 import FavBadge from "./FavBadge";
-import { Context } from "GlobalState";
+import { favContext } from "GlobalFavState";
 
 const TopNavigation = (props) => {
-  const [favs] = useContext(Context);
+  const [favs] = useContext(favContext);
   const [isFavPhotoExist, setIsFavPhotoExist] = useState(false);
 
   useEffect(() => {

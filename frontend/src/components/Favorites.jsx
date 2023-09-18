@@ -1,10 +1,10 @@
 import { React, useContext } from "react";
-import { Context } from "GlobalState";
+import { favContext } from "GlobalFavState";
 import PhotoList from "./PhotoList";
 import photos from "mocks/photos";
 
 const Favorites = () => {
-  const [favs] = useContext(Context);
+  const [favs] = useContext(favContext);
   const favoritePhotos = favs.map((id) => {
     const matchedPhoto = photos.find((photo) => {
       return photo.id === id;

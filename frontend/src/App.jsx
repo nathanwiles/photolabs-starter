@@ -2,7 +2,7 @@ import "./App.scss";
 import "styles/HomeRoute.scss";
 import { React, useState, createContext } from "react";
 
-import GlobalState from "GlobalState";
+import GlobalFavState from "GlobalFavState";
 import photos from "./mocks/photos";
 import topics from "mocks/topics";
 
@@ -13,11 +13,11 @@ import HomeRoute from "routes/HomeRoute";
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   return (
-    <GlobalState>
+    <GlobalFavState>
       <div className="App">
         <HomeRoute topicDataList={topics} photoDataList={photos} />
       </div>
-    </GlobalState>
+    </GlobalFavState>
   );
 };
 
