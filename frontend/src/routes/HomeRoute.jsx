@@ -7,11 +7,17 @@ import PhotoList from "../components/PhotoList";
 import Favorites from "components/Favorites";
 
 const HomeRoute = (props) => {
-  const { topicDataList, photoDataList } = props;
+  const {
+    topicDataList,
+    photoDataList,
+   
+  } = props;
+
+ 
   return (
     <div className="home-route">
       <TopNavigation topicDataList={topicDataList} />
-      <PhotoList photoDataList={photoDataList} favDefault={false} />
+      <PhotoList photoDataList={photoDataList} favDefault={false} modal={props.modal}/>
 
       <h1>Favs</h1>
       <Favorites />
