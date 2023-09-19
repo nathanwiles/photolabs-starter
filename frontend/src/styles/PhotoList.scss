@@ -2,8 +2,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-content: center;
   list-style-type: none;
-  margin: 0;
+  margin: 12px;
+  padding: 0;
+}
+
+.photo-list__vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  margin: 12px;
   padding: 0;
 }
 
