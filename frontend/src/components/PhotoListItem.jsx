@@ -6,41 +6,57 @@ import "../styles/PhotoListItem.scss";
 
 import { favContext } from "GlobalFavState";
 
-const PhotoListItem = (props) => {
-  const [isFav, setIsFav] = useState(props.favDefault || false);
+const PhotoListItem = ({
+  favDefault,
+  id,
+  modal,
+  border,
+  urls,
+  photoClassName,
+  userDetailsClassName,
+  user,
+  location,
+  favIconSize,
+}) => {
+  const [isFav, setIsFav] = useState(favDefault || false);
 
   const [favs] = useContext(favContext);
 
   useEffect(() => {
-    const fav = favs.includes(props.id) ? true : false;
+    const fav = favs.includes(id) ? true : false;
     setIsFav(fav);
   }, [favs]);
 
   const handleClick = (e) => {
     const photoId = e.target.closest(".photo-list__item").id;
 
-    props.modal.openModal(photoId);
-   
+    modal.openModal(photoId);
   };
 
   return (
-    <li id={props.id} className="photo-list__item">
-      <PhotoFavButton favDefault={props.favDefault} isFav={isFav} />
+    <div id={id} className="photo-list__item" style={{ border: border }}>
+      <PhotoFavButton
+        favDefault={favDefault}
+        isFav={isFav}
+        size={favIconSize}
+      />
       <img
         onClick={handleClick}
-        src={props.urls.regular}
-        className={props.imageClass ? props.imageClass : "photo-list__image"}
+        src={urls.regular}
+        className={photoClassName}
       ></img>
-      <div className="photo-list__user-details">
-        <img src={props.user.profile} className="photo-list__user-profile"></img>
+
+      <div className={userDetailsClassName}>
+        <img src={user.profile} className="photo-list__user-profile"></img>
         <div className="photo-list__user-info">
-          {props.user.name}
+          {user.name}
+
           <div className="photo-list__user-location">
-            {props.location.city}, {props.location.country},
+            {location.city}, {location.country}.
           </div>
         </div>
       </div>
-    </li>
+    </div>
   );
 };
 

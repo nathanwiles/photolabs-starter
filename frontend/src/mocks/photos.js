@@ -182,93 +182,93 @@ const photo10 = {
 const photos = [
   {
     ...photo1,
-    similarPhotos: {
+    similarPhotos: [
       photo2,
       photo3,
       photo4,
       photo5,
-    },
+    ],
   },
   {
     ...photo2,
-    similarPhotos: {
+    similarPhotos: [
       photo2,
       photo3,
       photo4,
       photo5,
-    },
+    ],
   },
   {
     ...photo3,
-    similarPhotos: {
+    similarPhotos: [
       photo2,
       photo3,
       photo4,
       photo5,
-    },
+    ],
   },
   {
     ...photo4,
-    similarPhotos: {
+    similarPhotos: [
       photo2,
       photo3,
       photo4,
       photo5,
-    },
+    ],
   },
   {
     ...photo5,
-    similarPhotos: {
+    similarPhotos: [
       photo2,
       photo3,
       photo4,
       photo5,
-    },
+    ],
   },
   {
     ...photo6,
-    similarPhotos: {
+    similarPhotos: [
       photo2,
       photo3,
       photo4,
       photo5,
-    },
+    ],
   },
   {
     ...photo7,
-    similarPhotos: {
+    similarPhotos: [
       photo2,
       photo3,
       photo4,
       photo5,
-    },
+    ],
   },
   {
     ...photo8,
-    similarPhotos: {
+    similarPhotos: [
       photo2,
       photo3,
       photo4,
       photo5,
-    },
+    ],
   },
   {
     ...photo9,
-    similarPhotos: {
+    similarPhotos: [
       photo2,
       photo3,
       photo4,
       photo5,
-    },
+    ],
   },
   {
     ...photo10,
-    similarPhotos: {
+    similarPhotos: [
       photo2,
       photo3,
       photo4,
       photo5,
-    },
+    ],
   },
 ];
 
