@@ -5,11 +5,14 @@ import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoListItem from "components/PhotoListItem";
 import PhotoList from "components/PhotoList";
 
-const PhotoDetailsModal = (props) => {
-  const photoData = props.modal.modalPhoto;
+const PhotoDetailsModal = ({
+  state,
+  stateHooks
+}) => {
+  const photoData = state.modalPhoto;
 
   const handleClose = () => {
-    props.modal.closeModal();
+    stateHooks.closeModal();
   };
 
   return (
@@ -23,21 +26,24 @@ const PhotoDetailsModal = (props) => {
         </button>
         <div className="photo-details-modal__content-container">
           <PhotoListItem
+            state={state}
+            stateHooks={stateHooks}
             key={photoData.id}
             {...photoData}
             favDefault={false}
             photoClassName="photo-details-modal__image"
             userDetailsClassName={"photo-details-modal__photographer-details"}
             favIconSize={"small"}
-            border='none'
+            border="none"
           />
-          <hr />
           <header className="photo-details-modal__header">
             Related Photos
+            <hr />
           </header>
           <PhotoList
             photoDataList={photoData.similarPhotos}
-            modal={props.modal}
+            state={state}
+            stateHooks={stateHooks}
             favIconSize="small"
             listClassName="photo-details-modal__images"
             photoClassName="photo-list__image"

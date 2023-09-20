@@ -1,10 +1,8 @@
 import "./App.scss";
 import "styles/HomeRoute.scss";
-import { React, useState, useContext } from "react";
-
-import GlobalFavState from "GlobalFavState";
-import photos from "./mocks/photos";
-import topics from "mocks/topics";
+import { React } from "react";
+// import GlobalFavState from "GlobalFavState";
+import useApplicationData from "hooks/useApplicationData";
 
 // Components
 import HomeRoute from "routes/HomeRoute";
@@ -12,32 +10,24 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  //modal logic
-  const [modalDisplay, setModalDisplay] = useState(false);
-  const [modalPhoto, setModalPhoto] = useState({});
-
-  const openModal = (photoId) => {
-    const photoIndex = photos.findIndex((data) => data.id === photoId);
-    const photo = photos[photoIndex];
-    setModalPhoto(photo);
-    setModalDisplay(true);
-  };
-
-  const closeModal = () => {
-    setModalDisplay(false);
-    setModalPhoto({});
-  };
+  const { toggleFavs, openModal, closeModal, state: {modalDisplay, ...state}, data } =
+    useApplicationData();
   return (
-    <GlobalFavState>
-      <div className="App">
-        <HomeRoute
-          topicDataList={topics}
-          photoDataList={photos}
-          modal={{ openModal, closeModal }}
+    // <GlobalFavState>
+    <div className="App">
+      <HomeRoute
+        {...data}
+        stateHooks={{ openModal, closeModal, toggleFavs }}
+        state={state}
+      />
+      {modalDisplay && (
+        <PhotoDetailsModal
+          stateHooks={{openModal, toggleFavs, closeModal}}
+          state={state}
         />
-        {modalDisplay && <PhotoDetailsModal modal={{ modalPhoto, openModal, closeModal }} />}
-      </div>
-    </GlobalFavState>
+      )}
+    </div>
+    // </GlobalFavState>
   );
 };
 

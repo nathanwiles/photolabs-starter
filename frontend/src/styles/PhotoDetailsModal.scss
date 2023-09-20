@@ -81,7 +81,6 @@
   font-size: 16px;
   align-items: center;
   justify-content: start;
-  
 }
 
 .photo-details-modal__header {
@@ -92,11 +91,10 @@
   margin-bottom: 24px;
   width: 90%;
   // border-top: lightgray solid 0.5px;
-
 }
 
 hr {
-width: 100%;
-margin-left: 16px;
-margin-right: 16px;
+  color: lightgrey;
+  width: 95%;
+  border-width: .5px;
 }

@@ -6,16 +6,17 @@ import TopNavigation from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";
 import Favorites from "components/Favorites";
 
-const HomeRoute = (props) => {
-  const { topicDataList, photoDataList, modal } = props;
+const HomeRoute = ({state, stateHooks, topics, photos }) => {
+
 
   return (
     <div className="home-route">
-      <TopNavigation topicDataList={topicDataList} />
+      <TopNavigation topicDataList={topics} state={state}/>
       <PhotoList
-        photoDataList={photoDataList}
+        photoDataList={photos}
         favDefault={false}
-        modal={modal}
+        state={state}
+        stateHooks={stateHooks}
         favIconSize="large"
         listClassName="photo-list__vertical"
         photoClassName="photo-list__image"
@@ -23,7 +24,7 @@ const HomeRoute = (props) => {
       />
 
       <h1>Favs</h1>
-      <Favorites />
+      <Favorites state={state}/>
     </div>
   );
 };
