@@ -19,9 +19,9 @@ const PhotoListItem = ({
   favIconSize,
 }) => {
   const [isFav, setIsFav] = useState(false);
+
   const handleClick = (e) => {
     const photoId = e.target.closest(".photo-list__item").id;
-
     openModal(photoId);
   };
 

@@ -5,10 +5,7 @@ import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoListItem from "components/PhotoListItem";
 import PhotoList from "components/PhotoList";
 
-const PhotoDetailsModal = ({
-  state,
-  stateHooks
-}) => {
+const PhotoDetailsModal = ({ state, stateHooks }) => {
   const photoData = state.modalPhoto;
 
   const handleClose = () => {

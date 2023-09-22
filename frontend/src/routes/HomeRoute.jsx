@@ -24,7 +24,7 @@ const HomeRoute = ({state, stateHooks, topics, photos }) => {
       />
 
       <h1>Favs</h1>
-      <Favorites state={state}/>
+      <Favorites state={state} stateHooks={stateHooks}/>
     </div>
   );
 };

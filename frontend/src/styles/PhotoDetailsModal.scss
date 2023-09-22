@@ -18,6 +18,11 @@
   width: 90vw;
   overflow-y: scroll;
   border-radius: 12px;
+  hr {
+    height: .5px;
+    background-color: lightgrey;
+    border: none;
+  }
 }
 .photo-details-modal__content-container {
   display: flex;
@@ -87,14 +92,7 @@
   font-size: 18px;
   font-weight: 500;
   color: #1e1e1e;
-  padding-top: 28px;
-  margin-bottom: 24px;
-  width: 90%;
-  // border-top: lightgray solid 0.5px;
-}
-
-hr {
-  color: lightgrey;
-  width: 95%;
-  border-width: .5px;
+  margin-left: 16px;
+  margin-right: 16px;
+  width: -webkit-fill-available;
 }
