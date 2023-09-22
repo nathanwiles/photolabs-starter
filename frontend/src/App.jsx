@@ -1,7 +1,7 @@
 import "./App.scss";
 import "styles/HomeRoute.scss";
 import { React } from "react";
-// import GlobalFavState from "GlobalFavState";
+
 import useApplicationData from "hooks/useApplicationData";
 
 // Components
@@ -13,7 +13,7 @@ const App = () => {
   const { toggleFavs, openModal, closeModal, state: {modalDisplay, ...state}, data } =
     useApplicationData();
   return (
-    // <GlobalFavState>
+  
     <div className="App">
       <HomeRoute
         {...data}
@@ -27,7 +27,7 @@ const App = () => {
         />
       )}
     </div>
-    // </GlobalFavState>
+
   );
 };
 
