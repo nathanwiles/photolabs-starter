@@ -1,14 +1,15 @@
-import { React, useState, useEffect, useContext } from "react";
+import { React, useState, useEffect } from "react";
 
 import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoFavButton.scss";
 import "../styles/PhotoListItem.scss";
+import { ACTIONS } from "hooks/useApplicationData";
 
 // import { favContext } from "GlobalFavState";
 
 const PhotoListItem = ({
   state: { favs },
-  stateHooks: { openModal, toggleFavs },
+  dispatch,
   id,
   border,
   urls,
@@ -18,21 +19,23 @@ const PhotoListItem = ({
   location,
   favIconSize,
 }) => {
+  
   const [isFav, setIsFav] = useState(false);
 
-  const handleClick = (e) => {
-    const photoId = e.target.closest(".photo-list__item").id;
-    openModal(photoId);
-  };
-
+  
   useEffect(() => {
     const fav = favs.includes(id) ? true : false;
     setIsFav(fav);
   }, [favs]);
+  
+  const handleImageClick = (e) => {
+    const photoId = e.target.closest(".photo-list__item").id;
+    dispatch({type: ACTIONS.OPEN_MODAL, payload: photoId});
+  };
 
   const handleFavButtonClick = (e) => {
     const photo = e.target.closest(".photo-list__item");
-    toggleFavs(photo.id);
+    dispatch({type: ACTIONS.TOGGLE_FAV_BY_ID, payload: photo.id});
   };
 
   return (
@@ -40,12 +43,12 @@ const PhotoListItem = ({
       <PhotoFavButton
         handleClick={handleFavButtonClick}
         isFav={isFav}
-        stateHooks={toggleFavs}
+        dispatch= {dispatch}
         size={favIconSize}
       />
 
       <img
-        onClick={handleClick}
+        onClick={handleImageClick}
         src={urls.regular}
         className={photoClassName}
       ></img>

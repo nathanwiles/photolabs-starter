@@ -4,27 +4,25 @@ import "../styles/HomeRoute.scss";
 
 import TopNavigation from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";
-import Favorites from "components/Favorites";
 
-const HomeRoute = ({state, stateHooks, topics, photos }) => {
 
+const HomeRoute = (props) => {
+  const {state} = props;
+ 
 
   return (
     <div className="home-route">
-      <TopNavigation topicDataList={topics} state={state}/>
+      <TopNavigation state={state}/>
       <PhotoList
-        photoDataList={photos}
+        {...props}
+        photoDataList={state.photos}
         favDefault={false}
-        state={state}
-        stateHooks={stateHooks}
         favIconSize="large"
         listClassName="photo-list__vertical"
         photoClassName="photo-list__image"
         userDetailsClassName="photo-list__user-details"
       />
-
-      <h1>Favs</h1>
-      <Favorites state={state} stateHooks={stateHooks}/>
+      
     </div>
   );
 };

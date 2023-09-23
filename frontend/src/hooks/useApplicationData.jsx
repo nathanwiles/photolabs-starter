@@ -1,49 +1,78 @@
-import { React, useState } from "react";
-import photos from "../mocks/photos";
-import topics from "../mocks/topics";
+import { React, useReducer} from "react";
+
+
+export const ACTIONS = {
+  OPEN_MODAL: "OPEN_MODAL",
+  CLOSE_MODAL: "CLOSE_MODAL",
+  TOGGLE_FAV_BY_ID: "TOGGLE_FAV_BY_ID",
+  SET_PHOTO_DATA: "SET_PHOTO_DATA",
+  SET_TOPICS_DATA: "SET_TOPICS_DATA"
+};
+
+const reducer = (state, { type, payload }) => {
+  switch (type) {
+  case "OPEN_MODAL": {
+    const {photos} = state;
+    const photoIndex = photos.findIndex((data) => data.id === payload);
+    const modalPhoto = photos[photoIndex];
+    return {
+      ...state,
+      modalPhoto,
+      modalDisplay: true,
+    };
+  }
+  case "CLOSE_MODAL":
+    return {
+      ...state,
+      modalDisplay: false,
+      modalPhoto: {},
+    };
+  case "TOGGLE_FAV_BY_ID": {
+    const { favs } = state;
+    if (favs.findIndex((element) => element === payload) === -1) {
+      return {
+        ...state,
+        favs: [...favs, payload],
+      };
+    } else {
+      const index = favs.findIndex((element) => element === payload);
+      const newFavs = [...favs];
+      newFavs.splice(index, 1);
+      return {
+        ...state,
+        favs: [...newFavs]
+      };
+    }
+  }
+  case "SET_PHOTO_DATA":
+    return {
+      ...state,
+      photos: payload
+    };
+  
+  case "SET_TOPICS_DATA":
+    return {
+      ...state,
+      topics: payload
+    };
+  
+  default:
+    throw new Error(`Tried to reduce with unsupported action type: ${type}`);
+  }
+};
 
 const useApplicationData = () => {
-  const [modalDisplay, setModalDisplay] = useState(false);
-  const [modalPhoto, setModalPhoto] = useState({});
-  const [favs, setFavs] = useState([]);
-
-  const openModal = (photoId) => {
-    const photoIndex = photos.findIndex((data) => data.id === photoId);
-    const photo = photos[photoIndex];
-    setModalPhoto(photo);
-    setModalDisplay(true);
+  const initialState = {
+    modalDisplay: false,
+    modalPhoto: {},
+    favs: [],
+    photos: [],
+    topics: [],
   };
 
-  const closeModal = () => {
-    setModalDisplay(false);
-    setModalPhoto({});
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const toggleFavs = (id) => {
-    if (favs.findIndex((element) => element === id) === -1) {
-      setFavs([...favs, id]);
-      console.log(`added ${id} to Favs`, [...favs, id]);
-    } else {
-      const index = favs.findIndex((element) => element === id);
-      const newFavs = favs;
-      newFavs.splice(index, 1);
-
-      console.log(`removed ${id} from favs`, newFavs);
-      setFavs([...newFavs]);
-    }
-  };
-
-  const state = {
-    modalPhoto,
-    modalDisplay,
-    favs,
-    photos,
-    topics,
-  };
-
-  const data = { photos, topics };
-
-  return { openModal, closeModal, toggleFavs, state, data };
+  return { dispatch, state };
 };
 
 export default useApplicationData;

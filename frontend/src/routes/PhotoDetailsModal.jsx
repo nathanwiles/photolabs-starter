@@ -4,12 +4,13 @@ import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoListItem from "components/PhotoListItem";
 import PhotoList from "components/PhotoList";
+import { ACTIONS } from "hooks/useApplicationData";
 
-const PhotoDetailsModal = ({ state, stateHooks }) => {
+const PhotoDetailsModal = ({ state, dispatch }) => {
   const photoData = state.modalPhoto;
 
   const handleClose = () => {
-    stateHooks.closeModal();
+    dispatch({type: ACTIONS.CLOSE_MODAL});
   };
 
   return (
@@ -24,7 +25,7 @@ const PhotoDetailsModal = ({ state, stateHooks }) => {
         <div className="photo-details-modal__content-container">
           <PhotoListItem
             state={state}
-            stateHooks={stateHooks}
+            dispatch={dispatch}
             key={photoData.id}
             {...photoData}
             favDefault={false}
@@ -40,7 +41,7 @@ const PhotoDetailsModal = ({ state, stateHooks }) => {
           <PhotoList
             photoDataList={photoData.similarPhotos}
             state={state}
-            stateHooks={stateHooks}
+            dispatch={dispatch}
             favIconSize="small"
             listClassName="photo-details-modal__images"
             photoClassName="photo-list__image"
