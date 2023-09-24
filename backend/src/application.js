@@ -38,7 +38,7 @@ module.exports = function application(
 
   app.use("/api", photos(db));
   app.use("/api", topics(db));
-
+  
   if (ENV === "development" || ENV === "test") {
     Promise.all([
       read(path.resolve(__dirname, `db/schema/create.sql`)),
