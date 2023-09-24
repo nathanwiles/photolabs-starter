@@ -24,13 +24,15 @@ const PhotoListItem = ({
 
   
   useEffect(() => {
-    const fav = favs.includes(id) ? true : false;
+    
+    const fav = favs.includes(`${id}`) ? true : false;
     setIsFav(fav);
   }, [favs]);
   
   const handleImageClick = (e) => {
     const photoId = e.target.closest(".photo-list__item").id;
-    dispatch({type: ACTIONS.OPEN_MODAL, payload: photoId});
+    dispatch({type: ACTIONS.SET_MODAL_IMAGE, payload: photoId});
+    dispatch({type: ACTIONS.OPEN_MODAL});
   };
 
   const handleFavButtonClick = (e) => {
