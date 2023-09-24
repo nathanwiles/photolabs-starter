@@ -10,69 +10,71 @@ export const ACTIONS = {
   SET_PHOTOS_BY_TOPIC: "SET_PHOTOS_BY_TOPIC",
 };
 
-// prettier-ignore
 const reducer = (state, { type, payload }) => {
-  switch (type) {
-  case "SET_MODAL_PHOTO":{
-    const { photos } = state;
-    const modalPhoto = photos.filter((data) => `${data.id}` === payload)[0];
-    console.log(payload, modalPhoto);
-    
-    return {
-      ...state,
-      modalPhoto
-    };
-  }
-  case "OPEN_MODAL": {
-    return {
-      ...state,
-      modalDisplay: true,
-    };
-  }
-  case "CLOSE_MODAL":
-    return {
-      ...state,
-      modalDisplay: false,
-      modalPhoto: {},
-    };
-  case "TOGGLE_FAV_BY_ID": {
-    
-    const { favs } = state;
-    console.log("payload:", payload);
-    if (favs.findIndex((element) => element === payload) === -1) {
-      console.log(payload);
-      console.log([...favs, payload]);
+  const reducerObj = {
+    SET_MODAL_PHOTO: () => {
+      const { photos } = state;
+      const modalPhoto = photos.filter((data) => `${data.id}` === payload)[0];
+      console.log(payload, modalPhoto);
+
       return {
         ...state,
-        favs: [...favs, payload],
+        modalPhoto,
       };
-    } else {
-      const index = favs.findIndex((element) => element === payload);
-      const newFavs = [...favs];
-      newFavs.splice(index, 1);
-      console.log(payload);
-      console.log(newFavs);
+    },
+    OPEN_MODAL: () => {
       return {
         ...state,
-        favs: [...newFavs],
+        modalDisplay: true,
       };
+    },
+    CLOSE_MODAL: () => {
+      return {
+        ...state,
+        modalDisplay: false,
+        modalPhoto: {},
+      };
+    },
+    TOGGLE_FAV_BY_ID: () => {
+      const { favs } = state;
+  
+      if (favs.findIndex((element) => element === payload) === -1) {
+        return {
+          ...state,
+          favs: [...favs, payload],
+        };
+      } else {
+        const index = favs.findIndex((element) => element === payload);
+        const newFavs = [...favs];
+        newFavs.splice(index, 1);
+        return {
+          ...state,
+          favs: [...newFavs],
+        };
+      }
+    },
+    SET_PHOTOS_DATA: () => {
+      return {
+        ...state,
+        photos: payload,
+      };
+    },
+    SET_TOPICS_DATA: () => {
+      return {
+        ...state,
+        topics: payload,
+      };
+    },
+    default: () => {
+      throw new Error(`Tried to reduce with unsupported action type: ${type}`);
     }
+  };
+
+  if (Object.keys(reducerObj).includes(type)) {
+    return reducerObj[type]();
   }
-  case "SET_PHOTOS_DATA":{
-    return {
-      ...state,
-      photos: payload,
-    };
-  }
-  case "SET_TOPICS_DATA":
-    return {
-      ...state,
-      topics: payload,
-    };
-    
-  default:
-    throw new Error(`Tried to reduce with unsupported action type: ${type}`);
-  }
+  return reducerObj.default();
+
 };
 
 const useApplicationData = () => {
