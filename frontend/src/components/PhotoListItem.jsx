@@ -8,7 +8,7 @@ import { ACTIONS } from "hooks/useApplicationData";
 // import { favContext } from "GlobalFavState";
 
 const PhotoListItem = ({
-  state: { favs },
+  state: { favs, modalDisplay },
   dispatch,
   id,
   border,
@@ -19,25 +19,24 @@ const PhotoListItem = ({
   location,
   favIconSize,
 }) => {
-  
   const [isFav, setIsFav] = useState(false);
 
-  
   useEffect(() => {
-    
     const fav = favs.includes(`${id}`) ? true : false;
     setIsFav(fav);
   }, [favs]);
-  
+
   const handleImageClick = (e) => {
     const photoId = e.target.closest(".photo-list__item").id;
-    dispatch({type: ACTIONS.SET_MODAL_IMAGE, payload: photoId});
-    dispatch({type: ACTIONS.OPEN_MODAL});
+    dispatch({ type: ACTIONS.SET_MODAL_IMAGE, payload: photoId });
+    if (!modalDisplay) {
+      dispatch({ type: ACTIONS.OPEN_MODAL });
+    }
   };
 
   const handleFavButtonClick = (e) => {
     const photo = e.target.closest(".photo-list__item");
-    dispatch({type: ACTIONS.TOGGLE_FAV_BY_ID, payload: photo.id});
+    dispatch({ type: ACTIONS.TOGGLE_FAV_BY_ID, payload: photo.id });
   };
 
   return (
@@ -45,7 +44,7 @@ const PhotoListItem = ({
       <PhotoFavButton
         handleClick={handleFavButtonClick}
         isFav={isFav}
-        dispatch= {dispatch}
+        dispatch={dispatch}
         size={favIconSize}
       />
 

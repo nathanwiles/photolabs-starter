@@ -1,23 +1,30 @@
 import { React, useReducer, useEffect } from "react";
 
 export const ACTIONS = {
+  SET_MODAL_IMAGE: "SET_MODAL_IMAGE",
   OPEN_MODAL: "OPEN_MODAL",
   CLOSE_MODAL: "CLOSE_MODAL",
   TOGGLE_FAV_BY_ID: "TOGGLE_FAV_BY_ID",
-  SET_PHOTO_DATA: "SET_PHOTO_DATA",
+  SET_PHOTOS_DATA: "SET_PHOTOS_DATA",
   SET_TOPICS_DATA: "SET_TOPICS_DATA",
 };
 
 // prettier-ignore
 const reducer = (state, { type, payload }) => {
   switch (type) {
-  case "OPEN_MODAL": {
+  case "SET_MODAL_IMAGE":{
     const { photos } = state;
-    const photoIndex = photos.findIndex((data) => data.id === payload);
-    const modalPhoto = photos[photoIndex];
+    const modalPhoto = photos.filter((data) => `${data.id}` === payload)[0];
+    console.log(payload, modalPhoto);
+    
     return {
       ...state,
-      modalPhoto,
+      modalPhoto
+    };
+  }
+  case "OPEN_MODAL": {
+    return {
+      ...state,
       modalDisplay: true,
     };
   }
@@ -28,8 +35,12 @@ const reducer = (state, { type, payload }) => {
       modalPhoto: {},
     };
   case "TOGGLE_FAV_BY_ID": {
+    
     const { favs } = state;
+    console.log("payload:", payload);
     if (favs.findIndex((element) => element === payload) === -1) {
+      console.log(payload);
+      console.log([...favs, payload]);
       return {
         ...state,
         favs: [...favs, payload],
@@ -38,14 +49,15 @@ const reducer = (state, { type, payload }) => {
       const index = favs.findIndex((element) => element === payload);
       const newFavs = [...favs];
       newFavs.splice(index, 1);
+      console.log(payload);
+      console.log(newFavs);
       return {
         ...state,
         favs: [...newFavs],
       };
     }
   }
-  case "SET_PHOTO_DATA":{
-    
+  case "SET_PHOTOS_DATA":{
     return {
       ...state,
       photos: payload,
@@ -66,6 +78,7 @@ const useApplicationData = () => {
   const initialState = {
     modalDisplay: false,
     modalPhoto: {},
+    modalSimilarPhotos: [],
     favs: [],
     photos: [],
     topics: [],
@@ -74,9 +87,9 @@ const useApplicationData = () => {
   useEffect(() => {
     fetch("/api/photos")
       .then((response) => response.json())
-      .then((data) =>
-        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })
-      );
+      .then((data) => {
+        dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
+      });
 
     fetch("/api/topics")
       .then((response) => response.json())

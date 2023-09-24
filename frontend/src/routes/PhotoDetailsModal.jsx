@@ -28,7 +28,6 @@ const PhotoDetailsModal = ({ state, dispatch }) => {
             dispatch={dispatch}
             key={photoData.id}
             {...photoData}
-            favDefault={false}
             photoClassName="photo-details-modal__image"
             userDetailsClassName={"photo-details-modal__photographer-details"}
             favIconSize={"small"}
@@ -39,7 +38,7 @@ const PhotoDetailsModal = ({ state, dispatch }) => {
             <hr />
           </header>
           <PhotoList
-            photoDataList={photoData.similarPhotos}
+            photoDataList={photoData.similar_photos}
             state={state}
             dispatch={dispatch}
             favIconSize="small"
