@@ -15,7 +15,7 @@ const reducer = (state, { type, payload }) => {
     SET_MODAL_PHOTO: () => {
       const { photos } = state;
       const modalPhoto = photos.filter((data) => `${data.id}` === payload)[0];
-      console.log(payload, modalPhoto);
+      
 
       return {
         ...state,
@@ -37,7 +37,7 @@ const reducer = (state, { type, payload }) => {
     },
     TOGGLE_FAV_BY_ID: () => {
       const { favs } = state;
-  
+
       if (favs.findIndex((element) => element === payload) === -1) {
         return {
           ...state,
@@ -65,16 +65,16 @@ const reducer = (state, { type, payload }) => {
         topics: payload,
       };
     },
+
     default: () => {
       throw new Error(`Tried to reduce with unsupported action type: ${type}`);
-    }
+    },
   };
 
   if (Object.keys(reducerObj).includes(type)) {
     return reducerObj[type]();
   }
   return reducerObj.default();
-
 };
 
 const useApplicationData = () => {
@@ -93,13 +93,15 @@ const useApplicationData = () => {
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
-      });
+      })
+      .catch((err) => console.log("error fetching photos", err));
 
     fetch("/api/topics")
       .then((response) => response.json())
       .then((data) =>
         dispatch({ type: ACTIONS.SET_TOPICS_DATA, payload: data })
-      );
+      )
+      .catch((err) => console.log("error fetching photos", err));
   }, []);
 
   return { dispatch, state };

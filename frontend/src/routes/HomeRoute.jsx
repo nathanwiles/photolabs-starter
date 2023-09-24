@@ -6,11 +6,11 @@ import TopNavigation from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";
 
 const HomeRoute = (props) => {
-  const { state } = props;
+  const { state, dispatch } = props;
 
   return (
     <div className="home-route">
-      <TopNavigation state={state} />
+      <TopNavigation state={state} dispatch={dispatch}/>
       <PhotoList
         {...props}
         photoDataList={state.photos}
