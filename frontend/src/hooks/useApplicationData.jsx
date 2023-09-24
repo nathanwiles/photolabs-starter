@@ -1,18 +1,19 @@
 import { React, useReducer, useEffect } from "react";
 
 export const ACTIONS = {
-  SET_MODAL_IMAGE: "SET_MODAL_IMAGE",
+  SET_MODAL_PHOTO: "SET_MODAL_PHOTO",
   OPEN_MODAL: "OPEN_MODAL",
   CLOSE_MODAL: "CLOSE_MODAL",
   TOGGLE_FAV_BY_ID: "TOGGLE_FAV_BY_ID",
   SET_PHOTOS_DATA: "SET_PHOTOS_DATA",
   SET_TOPICS_DATA: "SET_TOPICS_DATA",
+  SET_PHOTOS_BY_TOPIC: "SET_PHOTOS_BY_TOPIC",
 };
 
 // prettier-ignore
 const reducer = (state, { type, payload }) => {
   switch (type) {
-  case "SET_MODAL_IMAGE":{
+  case "SET_MODAL_PHOTO":{
     const { photos } = state;
     const modalPhoto = photos.filter((data) => `${data.id}` === payload)[0];
     console.log(payload, modalPhoto);
@@ -68,7 +69,7 @@ const reducer = (state, { type, payload }) => {
       ...state,
       topics: payload,
     };
-
+    
   default:
     throw new Error(`Tried to reduce with unsupported action type: ${type}`);
   }
@@ -83,6 +84,7 @@ const useApplicationData = () => {
     photos: [],
     topics: [],
   };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     fetch("/api/photos")
@@ -97,8 +99,6 @@ const useApplicationData = () => {
         dispatch({ type: ACTIONS.SET_TOPICS_DATA, payload: data })
       );
   }, []);
-
-  const [state, dispatch] = useReducer(reducer, initialState);
 
   return { dispatch, state };
 };

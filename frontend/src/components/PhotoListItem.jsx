@@ -28,7 +28,7 @@ const PhotoListItem = ({
 
   const handleImageClick = (e) => {
     const photoId = e.target.closest(".photo-list__item").id;
-    dispatch({ type: ACTIONS.SET_MODAL_IMAGE, payload: photoId });
+    dispatch({ type: ACTIONS.SET_MODAL_PHOTO, payload: photoId });
     if (!modalDisplay) {
       dispatch({ type: ACTIONS.OPEN_MODAL });
     }
