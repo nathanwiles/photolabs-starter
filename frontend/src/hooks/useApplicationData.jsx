@@ -1,4 +1,5 @@
 import { React, useReducer, useEffect } from "react";
+import { getAllPhotos, getAllTopics} from "api-requests/index";
 
 export const ACTIONS = {
   SET_MODAL_PHOTO: "SET_MODAL_PHOTO",
@@ -15,7 +16,6 @@ const reducer = (state, { type, payload }) => {
     SET_MODAL_PHOTO: () => {
       const { photos } = state;
       const modalPhoto = photos.filter((data) => `${data.id}` === payload)[0];
-      
 
       return {
         ...state,
@@ -89,19 +89,8 @@ const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    fetch("/api/photos")
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
-      })
-      .catch((err) => console.log("error fetching photos", err));
-
-    fetch("/api/topics")
-      .then((response) => response.json())
-      .then((data) =>
-        dispatch({ type: ACTIONS.SET_TOPICS_DATA, payload: data })
-      )
-      .catch((err) => console.log("error fetching photos", err));
+    getAllPhotos().then((data) => dispatch({type: ACTIONS.SET_PHOTOS_DATA, payload: data}));
+    getAllTopics().then((data) => dispatch({type: ACTIONS.SET_TOPICS_DATA, payload: data}));
   }, []);
 
   return { dispatch, state };
