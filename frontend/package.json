@@ -1,6 +1,7 @@
 {
-  "name": "frontend",
+  "name": "photolabs",
   "version": "0.1.0",
+  "author": "Nathan Wiles",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
