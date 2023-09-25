@@ -20,21 +20,19 @@ const PhotoListItem = ({
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
-    const fav = favs.includes(`${id}`) ? true : false;
+    const fav = favs.includes(id) ? true : false;
     setIsFav(fav);
   }, [favs]);
 
-  const handleImageClick = (e) => {
-    const photoId = e.target.closest(".photo-list__item").id;
-    dispatch({ type: ACTIONS.SET_MODAL_PHOTO, payload: photoId });
+  const handleImageClick = () => {
+    dispatch({ type: ACTIONS.SET_MODAL_PHOTO, payload: id });
     if (!modalDisplay) {
       dispatch({ type: ACTIONS.OPEN_MODAL });
     }
   };
 
-  const handleFavButtonClick = (e) => {
-    const photo = e.target.closest(".photo-list__item");
-    dispatch({ type: ACTIONS.TOGGLE_FAV_BY_ID, payload: photo.id });
+  const handleFavButtonClick = () => {
+    dispatch({ type: ACTIONS.TOGGLE_FAV_BY_ID, payload: id });
   };
 
   return (

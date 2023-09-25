@@ -16,7 +16,7 @@ const reducer = (state, { type, payload }) => {
   const reducerObj = {
     SET_MODAL_PHOTO: () => {
       const { photos } = state;
-      const modalPhoto = photos.filter((data) => `${data.id}` === payload)[0];
+      const modalPhoto = photos.filter((data) => data.id === payload)[0];
 
       return {
         ...state,
