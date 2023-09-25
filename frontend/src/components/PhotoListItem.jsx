@@ -3,48 +3,37 @@ import { React, useState, useEffect } from "react";
 import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoFavButton.scss";
 import "../styles/PhotoListItem.scss";
-import { ACTIONS } from "hooks/useApplicationData";
+import { renderModalPhoto, togglePhotoFavStatus } from "click-handlers";
 
 const PhotoListItem = ({
   state: { favs, modalDisplay },
   dispatch,
-  id,
+  photoData: { id, urls, user, location },
+  photoData,
   border,
-  urls,
   photoClassName,
   userDetailsClassName,
-  user,
-  location,
-  
 }) => {
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
-    const fav = favs.includes(id) ? true : false;
+    const fav =
+      favs.findIndex((element) => element.id === id) === -1 ? false : true;
     setIsFav(fav);
   }, [favs]);
 
-  const handleImageClick = () => {
-    dispatch({ type: ACTIONS.SET_MODAL_PHOTO, payload: id });
-    if (!modalDisplay) {
-      dispatch({ type: ACTIONS.OPEN_MODAL });
-    }
-  };
-
-  const handleFavButtonClick = () => {
-    dispatch({ type: ACTIONS.TOGGLE_FAV_BY_ID, payload: id });
-  };
+ 
 
   return (
     <div id={id} className="photo-list__item" style={{ border: border }}>
       <PhotoFavButton
-        handleClick={handleFavButtonClick}
+        handleClick={() => togglePhotoFavStatus(photoData, dispatch)}
         isFav={isFav}
         dispatch={dispatch}
       />
 
       <img
-        onClick={handleImageClick}
+        onClick={() => renderModalPhoto(id, modalDisplay, dispatch)}
         src={urls.regular}
         className={photoClassName}
       ></img>

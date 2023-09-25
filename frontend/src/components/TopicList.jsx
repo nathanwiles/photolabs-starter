@@ -1,20 +1,15 @@
 import React from "react";
-import TopicListItem from "./TopicListItem";
 import "../styles/TopicList.scss";
-import { ACTIONS } from "../hooks/useApplicationData";
-import { getPhotosByTopics } from "api-requests/index";
+
+import TopicListItem from "./TopicListItem";
+import { renderTopicPhotos } from "click-handlers";
 
 const TopicList = ({ state: { topics }, dispatch }) => {
-  const handleTopicClick = (id) => {
-    getPhotosByTopics(id).then((data) => {
-      dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
-    });
-  };
-
+  
   const renderedTopics = topics.map((topicData) => (
     <TopicListItem
       key={topicData.id}
-      handleClick={() => handleTopicClick(topicData.id)}
+      handleClick={() => renderTopicPhotos(topicData.id, dispatch)}
       {...topicData}
     />
   ));

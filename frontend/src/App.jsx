@@ -14,12 +14,13 @@ const App = () => {
   //console.log("photos:", state.photos);
 
 
-  const { modalDisplay } = state;
+ 
 
   return (
     <div className="App">
       <HomeRoute dispatch={dispatch} state={state} />
-      {modalDisplay && <PhotoDetailsModal dispatch={dispatch} state={state} />}
+      {state.modalDisplay && <PhotoDetailsModal dispatch={dispatch} state={state} />}
+      
     </div>
   );
 };

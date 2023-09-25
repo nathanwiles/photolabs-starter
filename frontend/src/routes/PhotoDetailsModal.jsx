@@ -27,7 +27,7 @@ const PhotoDetailsModal = ({ state, dispatch }) => {
             state={state}
             dispatch={dispatch}
             key={photoData.id}
-            {...photoData}
+            photoData= {photoData}
             photoClassName="photo-details-modal__image"
             userDetailsClassName={"photo-details-modal__photographer-details"}
             border="none"

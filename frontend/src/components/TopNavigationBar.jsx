@@ -3,34 +3,31 @@ import { React, useState, useEffect } from "react";
 import "../styles/TopNavigationBar.scss";
 import TopicList from "./TopicList";
 import FavBadge from "./FavBadge";
-import { ACTIONS } from "hooks/useApplicationData";
-import { getAllPhotos } from "../api-requests/index";
+import { renderAllPhotos, displayFavorites } from "click-handlers";
 
 const TopNavigation = ({ state: { favs }, state, dispatch }) => {
-  const handleLogoClick = () => {
-    getAllPhotos()
-      .then((data) =>
-        dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data })
-      )
-
-      .catch((err) => console.log("error loading images on logo click:", err));
-  };
-
-  const [isFavsExist, setIsFavsExist] = useState(false);
+  const [favsExist, setFavsExist] = useState(false);
 
   useEffect(() => {
-    setIsFavsExist(favs.length > 0 ? true : false);
+    setFavsExist(favs.length > 0 ? true : false);
   }, [favs]);
 
   return (
     <div className="top-nav-bar">
-      <span onClick={handleLogoClick} className="top-nav-bar__logo">
+      <span
+        onClick={() => renderAllPhotos(dispatch)}
+        className="top-nav-bar__logo"
+      >
         PhotoLabs
       </span>
       <div className="top-nav-bar">
         <TopicList state={state} dispatch={dispatch} />
         <span>
-          <FavBadge selected={true} isFavPhotoExist={isFavsExist} />
+          <FavBadge
+            handleClick={() => displayFavorites(dispatch)}
+            selected={true}
+            isFavPhotoExist={favsExist}
+          />
         </span>
       </div>
     </div>

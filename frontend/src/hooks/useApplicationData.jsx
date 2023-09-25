@@ -1,5 +1,5 @@
 import { React, useReducer, useEffect } from "react";
-import { getAllPhotos, getAllTopics} from "api-requests/index";
+import { getAllPhotos, getAllTopics } from "api-requests/index";
 /**
  * @description object containing the usable action types for dispatch.
  */
@@ -10,6 +10,7 @@ export const ACTIONS = {
   TOGGLE_FAV_BY_ID: "TOGGLE_FAV_BY_ID",
   SET_PHOTOS_DATA: "SET_PHOTOS_DATA",
   SET_TOPICS_DATA: "SET_TOPICS_DATA",
+  SET_DISPLAY_FAVS: "SET_DISPLAY_FAVS",
 };
 
 const reducer = (state, { type, payload }) => {
@@ -39,13 +40,13 @@ const reducer = (state, { type, payload }) => {
     TOGGLE_FAV_BY_ID: () => {
       const { favs } = state;
 
-      if (favs.findIndex((element) => element === payload) === -1) {
+      if (favs.findIndex((element) => element.id === payload.id) === -1) {
         return {
           ...state,
           favs: [...favs, payload],
         };
       } else {
-        const index = favs.findIndex((element) => element === payload);
+        const index = favs.findIndex((element) => element.id === payload.id);
         const newFavs = [...favs];
         newFavs.splice(index, 1);
         return {
@@ -58,12 +59,19 @@ const reducer = (state, { type, payload }) => {
       return {
         ...state,
         photos: payload,
+        displayFavs: false
       };
     },
     SET_TOPICS_DATA: () => {
       return {
         ...state,
         topics: payload,
+      };
+    },
+    SET_DISPLAY_FAVS: () => {
+      return {
+        ...state,
+        displayFavs: payload,
       };
     },
 
@@ -89,14 +97,19 @@ const useApplicationData = () => {
     modalPhoto: {},
     modalSimilarPhotos: [],
     favs: [],
+    displayFavs: false,
     photos: [],
     topics: [],
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    getAllPhotos().then((data) => dispatch({type: ACTIONS.SET_PHOTOS_DATA, payload: data}));
-    getAllTopics().then((data) => dispatch({type: ACTIONS.SET_TOPICS_DATA, payload: data}));
+    getAllPhotos().then((data) =>
+      dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data })
+    );
+    getAllTopics().then((data) =>
+      dispatch({ type: ACTIONS.SET_TOPICS_DATA, payload: data })
+    );
   }, []);
 
   return { dispatch, state };
