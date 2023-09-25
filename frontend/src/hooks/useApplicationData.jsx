@@ -1,5 +1,5 @@
 import { React, useReducer, useEffect } from "react";
-import { getAllPhotos, getAllTopics } from "api-requests/index";
+import { getAllPhotos, getAllTopics, getFavorites } from "api-requests/index";
 /**
  * @description object containing the usable action types for dispatch.
  */
@@ -11,6 +11,7 @@ export const ACTIONS = {
   SET_PHOTOS_DATA: "SET_PHOTOS_DATA",
   SET_TOPICS_DATA: "SET_TOPICS_DATA",
   SET_DISPLAY_FAVS: "SET_DISPLAY_FAVS",
+  SET_FAVS_DATA: "SET_FAVS_DATA",
 };
 
 const reducer = (state, { type, payload }) => {
@@ -59,13 +60,25 @@ const reducer = (state, { type, payload }) => {
       return {
         ...state,
         photos: payload,
-        displayFavs: false
+        displayFavs: false,
       };
     },
     SET_TOPICS_DATA: () => {
       return {
         ...state,
         topics: payload,
+      };
+    },
+    SET_FAVS_DATA: () => {
+      if (payload) {
+        return {
+          ...state,
+          favs: payload,
+        };
+      }
+      return {
+        ...state,
+        favs: [],
       };
     },
     SET_DISPLAY_FAVS: () => {
@@ -110,6 +123,10 @@ const useApplicationData = () => {
     getAllTopics().then((data) =>
       dispatch({ type: ACTIONS.SET_TOPICS_DATA, payload: data })
     );
+    getFavorites().then((data) =>
+      dispatch({ type: ACTIONS.SET_FAVS_DATA, payload: data })
+    );
+
   }, []);
 
   return { dispatch, state };

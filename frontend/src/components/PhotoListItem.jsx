@@ -4,6 +4,7 @@ import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoFavButton.scss";
 import "../styles/PhotoListItem.scss";
 import { renderModalPhoto, togglePhotoFavStatus } from "click-handlers";
+import { addFavoriteById, deleteFavoriteById } from "api-requests";
 
 const PhotoListItem = ({
   state: { favs, modalDisplay },
@@ -22,12 +23,12 @@ const PhotoListItem = ({
     setIsFav(fav);
   }, [favs]);
 
- 
+  
 
   return (
     <div id={id} className="photo-list__item" style={{ border: border }}>
       <PhotoFavButton
-        handleClick={() => togglePhotoFavStatus(photoData, dispatch)}
+        handleClick={() => togglePhotoFavStatus(photoData, isFav, dispatch)}
         isFav={isFav}
         dispatch={dispatch}
       />
