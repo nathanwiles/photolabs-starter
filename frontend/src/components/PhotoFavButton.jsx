@@ -3,22 +3,11 @@ import React from "react";
 import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
-const PhotoFavButton = ({ isFav, size, handleClick}) => {
-  
-
-  const buttonSize = 32 * (size === "large" ? 2 : 1);
-
+const PhotoFavButton = ({ isFav, handleClick }) => {
   return (
-    <div
-      className={`photo-list__fav-icon__${size}`}
-      onClick={handleClick}
-      style={{ height: `${buttonSize}`, width: `${buttonSize}` }}
-    >
-      <div
-        className={`photo-list__fav-icon-svg__${size}`}
-        style={{ height: `${buttonSize}`, width: `${buttonSize}` }}
-      >
-        <FavIcon displayAlert={false} selected={isFav} size={size} />
+    <div className={`photo-list__fav-icon`} onClick={handleClick}>
+      <div className={`photo-list__fav-icon-svg`}>
+        <FavIcon displayAlert={false} selected={isFav} />
       </div>
     </div>
   );

@@ -1,13 +1,10 @@
 import React from "react";
 
-const FavIcon = ({ displayAlert, selected, size }) => {
-  const multiplier = Number(size === 'large' ? 2 : 1);
-  const width = 20 * multiplier;
-  const height = 17 * multiplier;
+const FavIcon = ({ displayAlert, selected }) => {
   return (
     <svg
-      width={width}
-      height={height}
+      width="20"
+      height="17"
       viewBox="0 0 24 19"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

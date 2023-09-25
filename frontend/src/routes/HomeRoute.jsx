@@ -14,8 +14,6 @@ const HomeRoute = (props) => {
       <PhotoList
         {...props}
         photoDataList={state.photos}
-        favDefault={false}
-        favIconSize="small"
         listClassName="photo-list"
         photoClassName="photo-list__image"
         userDetailsClassName="photo-list__user-details"

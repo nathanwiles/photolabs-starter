@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
@@ -30,7 +30,6 @@ const PhotoDetailsModal = ({ state, dispatch }) => {
             {...photoData}
             photoClassName="photo-details-modal__image"
             userDetailsClassName={"photo-details-modal__photographer-details"}
-            favIconSize={"small"}
             border="none"
           />
           <header className="photo-details-modal__header">
@@ -41,7 +40,6 @@ const PhotoDetailsModal = ({ state, dispatch }) => {
             photoDataList={photoData.similar_photos}
             state={state}
             dispatch={dispatch}
-            favIconSize="small"
             listClassName="photo-details-modal__images"
             photoClassName="photo-list__image"
             userDetailsClassName="photo-list__user-details"

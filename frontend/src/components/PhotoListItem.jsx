@@ -5,8 +5,6 @@ import "../styles/PhotoFavButton.scss";
 import "../styles/PhotoListItem.scss";
 import { ACTIONS } from "hooks/useApplicationData";
 
-// import { favContext } from "GlobalFavState";
-
 const PhotoListItem = ({
   state: { favs, modalDisplay },
   dispatch,
@@ -17,7 +15,7 @@ const PhotoListItem = ({
   userDetailsClassName,
   user,
   location,
-  favIconSize,
+  
 }) => {
   const [isFav, setIsFav] = useState(false);
 
@@ -45,7 +43,6 @@ const PhotoListItem = ({
         handleClick={handleFavButtonClick}
         isFav={isFav}
         dispatch={dispatch}
-        size={favIconSize}
       />
 
       <img

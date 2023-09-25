@@ -1,4 +1,4 @@
-.photo-list__fav-icon__small {
+.photo-list__fav-icon {
   position: relative;
   top: 8px;
   right: -8px;
@@ -12,26 +12,7 @@
   border-radius: 100%;
 }
 
-.photo-list__fav-icon-svg__small {
+.photo-list__fav-icon-svg {
   padding-top: 6px;
   padding-left: 2px;
-}
-
-.photo-list__fav-icon__large {
-position: relative;
-top: 32px;
-right: -32px;
-cursor: pointer;
-margin-bottom: -64px;
-border-width: 0.1px;
-background-color: #EEEEEE;
-width: 64px;
-height: 64px;
-text-align: center;
-border-radius: 100%;
-}
-
-.photo-list__fav-icon-svg__large {
-  padding-top: 16px;
-  padding-left: 3px;
 }

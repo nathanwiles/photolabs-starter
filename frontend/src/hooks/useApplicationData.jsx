@@ -1,6 +1,8 @@
 import { React, useReducer, useEffect } from "react";
 import { getAllPhotos, getAllTopics} from "api-requests/index";
-
+/**
+ * @description object containing the usable action types for dispatch.
+ */
 export const ACTIONS = {
   SET_MODAL_PHOTO: "SET_MODAL_PHOTO",
   OPEN_MODAL: "OPEN_MODAL",
@@ -8,7 +10,6 @@ export const ACTIONS = {
   TOGGLE_FAV_BY_ID: "TOGGLE_FAV_BY_ID",
   SET_PHOTOS_DATA: "SET_PHOTOS_DATA",
   SET_TOPICS_DATA: "SET_TOPICS_DATA",
-  SET_PHOTOS_BY_TOPIC: "SET_PHOTOS_BY_TOPIC",
 };
 
 const reducer = (state, { type, payload }) => {
@@ -77,6 +78,11 @@ const reducer = (state, { type, payload }) => {
   return reducerObj.default();
 };
 
+/**
+ * @description sets up the data for the application.
+ * @side_effects makes api requests for photos and topics, loading them into state.
+ * @returns {dispatch, state} returns the global state, as well as a dispatch function to execute changes to state.
+ */
 const useApplicationData = () => {
   const initialState = {
     modalDisplay: false,

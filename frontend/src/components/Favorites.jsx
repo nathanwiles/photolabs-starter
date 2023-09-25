@@ -4,11 +4,11 @@ import PhotoList from "./PhotoList";
 import photos from "mocks/photos";
 
 const Favorites = ({ state: { favs }, state, stateHooks }) => {
+ 
   const favoritePhotos = favs.map((id) => {
     const matchedPhoto = photos.find((photo) => {
       return photo.id === id;
     });
-
     if (matchedPhoto) return matchedPhoto;
   });
 
@@ -17,8 +17,7 @@ const Favorites = ({ state: { favs }, state, stateHooks }) => {
       favDefault={false}
       state={state}
       stateHooks={stateHooks}
-      favIconSize="large"
-      listClassName="photo-list__vertical"
+      listClassName="photo-list"
       photoClassName="photo-list__image"
       userDetailsClassName="photo-list__user-details"
       photoDataList={favoritePhotos}
