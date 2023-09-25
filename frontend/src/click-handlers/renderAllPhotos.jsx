@@ -2,7 +2,7 @@ import { getAllPhotos } from "api-requests";
 import { ACTIONS } from "hooks/useApplicationData";
 
 /**
- * @param {dispatch} dispatch from useApplicationData
+ * @param {function} dispatch from useApplicationData
  * @Effect calls getAllPhotos() and dispatches SET_PHOTOS_DATA with the returned data
  */
 

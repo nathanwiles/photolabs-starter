@@ -4,20 +4,17 @@ import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoListItem from "components/PhotoListItem";
 import PhotoList from "components/PhotoList";
-import { ACTIONS } from "hooks/useApplicationData";
+import { closeModal } from "click-handlers";
 
 const PhotoDetailsModal = ({ state, dispatch }) => {
   const photoData = state.modalPhoto;
 
-  const handleClose = () => {
-    dispatch({type: ACTIONS.CLOSE_MODAL});
-  };
 
   return (
     <div className="photo-details-modal__overlay">
       <div className="photo-details-modal">
         <button
-          onClick={handleClose}
+          onClick={()=>closeModal(dispatch)}
           className="photo-details-modal__close-button"
         >
           <img src={closeSymbol} alt="close symbol" />

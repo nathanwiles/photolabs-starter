@@ -1,7 +1,7 @@
 import { ACTIONS } from "hooks/useApplicationData";
 /**
- * @param {*} photoData photo to add or remove from favs
- * @param {*} dispatch from useApplicationData
+ * @param {object} photoData photo to add or remove from favs
+ * @param {function} dispatch from useApplicationData
  * @effect dispatches TOGGLE_FAV_BY_ID with a payload of photoData.
  */
 export const togglePhotoFavStatus = (photoData, dispatch) => {

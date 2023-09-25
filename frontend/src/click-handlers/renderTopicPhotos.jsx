@@ -2,8 +2,8 @@ import { getPhotosByTopics } from "api-requests";
 import { ACTIONS } from "hooks/useApplicationData";
 
 /**
- * @param {id} id topic id
- * @param {dispatch} dispatch from useApplicationData
+ * @param {number} id topic id
+ * @param {function} dispatch from useApplicationData
  * @Effect calls getPhotosByTopic() and dispatches SET_PHOTOS_DATA with the returned data
  */
 
