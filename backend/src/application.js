@@ -10,6 +10,7 @@ const app = express();
 
 const db = require("./db")
 
+const favs = require("./routes/favs");
 const photos = require("./routes/photos");
 const topics = require("./routes/topics");
 
@@ -38,6 +39,7 @@ module.exports = function application(
 
   app.use("/api", photos(db));
   app.use("/api", topics(db));
+  app.use("/api", favs(db));
   
   if (ENV === "development" || ENV === "test") {
     Promise.all([
