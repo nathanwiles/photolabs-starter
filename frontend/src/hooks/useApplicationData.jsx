@@ -44,7 +44,7 @@ const reducer = (state, { type, payload }) => {
       if (favs.findIndex((element) => element.id === payload.id) === -1) {
         return {
           ...state,
-          favs: [...favs, payload],
+          favs: [payload, ...favs],
         };
       } else {
         const index = favs.findIndex((element) => element.id === payload.id);
