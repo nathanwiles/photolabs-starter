@@ -5,7 +5,10 @@ import PhotoList from "./PhotoList";
 const Favorites = ({ state: { favs }, state, dispatch }) => {
   return (
     <>
-      {favs.length === 0 && <div> No favorites to display </div>}
+      <div className="title" style={{display: 'flex', justifyContent: 'center'}}>
+        {favs.length === 0 && <h3> No favorites to display </h3>}
+        {favs.length > 0 && <h2> Favorites </h2>}
+      </div>
       <PhotoList
         state={state}
         dispatch={dispatch}
