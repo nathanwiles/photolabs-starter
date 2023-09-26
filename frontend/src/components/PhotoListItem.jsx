@@ -4,7 +4,6 @@ import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoFavButton.scss";
 import "../styles/PhotoListItem.scss";
 import { renderModalPhoto, togglePhotoFavStatus } from "click-handlers";
-import { addFavoriteById, deleteFavoriteById } from "api-requests";
 
 const PhotoListItem = ({
   state: { favs, modalDisplay },

@@ -1,4 +1,4 @@
-import { React, useReducer, useEffect } from "react";
+import { useReducer, useEffect } from "react";
 import { getAllPhotos, getAllTopics, getFavorites } from "api-requests/index";
 /**
  * @description object containing the usable action types for dispatch.
