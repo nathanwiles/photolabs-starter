@@ -24,7 +24,7 @@ cd frontend
 npm start
 ```
 
-## [Backend] Running Backend Servier
+## [Backend] Running Backend Server
 
 Read ['backend/readme'](backend/README.md) for further setup details.
 
